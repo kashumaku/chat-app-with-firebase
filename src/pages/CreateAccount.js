@@ -35,7 +35,7 @@ const CreateAccount = () => {
                 <input type="password" placeholder="Confirm Password" onChange={(e) => setConfirm(e.target.value)} className="border-b border-b-blue-700 outline-none h-8 px-2 w-[90%]" />
                 <button onClick={handelCreate} className="bg-blue-700 text-white px-10 py-2" >Create account</button>
                 <p className="">Have an account?
-                    <Link className="text-blue-700 font-bold underline " to='/login'>Login</Link></p>
+                    <Link className="text-blue-700 font-bold underline " to='/chat-app-with-firebase/login'>Login</Link></p>
             </div>
         </div>
     );

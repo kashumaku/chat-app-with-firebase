@@ -18,7 +18,7 @@ const Login = () => {
         else {
 
             localStorage.setItem("id", userLoged.id)
-            navigate("/")
+            navigate("/chat-app-with-firebase")
         }
     }
 
@@ -30,7 +30,7 @@ const Login = () => {
                 <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} className="border-b border-b-blue-700 outline-none h-8 px-2 w-[90%]" />
                 <button className="bg-blue-700 text-white px-10 py-2" onClick={handelLogin}>Login</button>
                 {warnning && <h1>{warnning}</h1>}
-                <p className="">Have no account?  <Link className="text-blue-700 font-bold underline" to='/create'>Create account</Link></p>
+                <p className="">Have no account?  <Link className="text-blue-700 font-bold underline" to='/chat-app-with-firebase/create'>Create account</Link></p>
             </div>
         </div>
     );
