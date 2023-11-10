@@ -7,7 +7,7 @@ import CreateAccount from "./pages/CreateAccount";
 
 
 function App() {
-  const [userId, setUserId] = useState("")
+  const [userId, setUserId] = useState({})
   return (
     <BrowserRouter>
       <chatContext.Provider value={{ userId, setUserId }}>

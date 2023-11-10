@@ -10,11 +10,12 @@ const Home = () => {
     const users = useGetUsers()
     const messages = useGetMessages()
     const userId = localStorage.getItem("id")
-    if (!userId)
+    console.log(users.length);
+    if (!userId && (users <= 0))
         navigator("/login")
     return (
         <div className="flex w-full h-screen overflow-y-hidden overflow-x-hidden">
-            {(users.length || userId) > 0 && <>
+            {users.length > 0 && <>
                 <SideBar users={users} userId={userId} />
                 <ChatBody messages={messages} />
             </>}
