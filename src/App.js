@@ -12,9 +12,9 @@ function App() {
     <BrowserRouter>
       <chatContext.Provider value={{ userId, setUserId }}>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/create" element={<CreateAccount />} />
+          <Route path="/chat-app-with-firebase" element={<Home />} />
+          <Route path="/chat-app-with-firebase/login" element={<Login />} />
+          <Route path="/chat-app-with-firebase/create" element={<CreateAccount />} />
         </Routes>
 
       </chatContext.Provider>
