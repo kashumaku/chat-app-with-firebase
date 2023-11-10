@@ -16,6 +16,11 @@ const CreateAccount = () => {
             setAlert("password doesn't match try again")
             return
         }
+        else if (!firstName.trim() || !lastName.trim() || !email.trim() || !password.trim) {
+            setAlert("Enter the valid values in the input fields")
+            return
+        }
+
         const newUser = { first_name: firstName, last_name: lastName, email: email, password: password }
         const userCollection = collection(db, "users")
         await addDoc(userCollection, newUser)

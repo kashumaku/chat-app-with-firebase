@@ -27,13 +27,13 @@ const ChatBody = ({ messages }) => {
                 <span className="flex items-end  text-white "><img src="b.jpg" alt="" className="w-10 h-10 rounded-full" />chat user</span>
             </div>
             {userId && <>
-                <div className="md:w-[500px] md:ml-20 mt-5 p-4 h-[90%] bg-white rounded-lg">
+                <div className="md:w-[500px] md:ml-20  bg-orange-300 rounded-lg h-[95%] overflow-y-scroll">
                     {message.map(m => {
-                        return <p key={m.id} className={` text-black p-2 mt-2 ${m.receiver_id !== logedInId && 'bg-blue-100 rounded-l-full  flex justify-end'}`} >{m.message}</p>
+                        return <p key={m.id} className={` text-black p-2 mt-2 ${m.receiver_id === logedInId && 'bg-blue-100 rounded-l-full  flex justify-end'}`} >{m.message}</p>
                     })}
-                    <div className="w-full absolute bottom-2 flex items-center">
-                        <input className='max-w-[450px] w-[55%] mr-1 outline-none border-b border-b-blue-700' placeholder="Write message..." value={newMessage} onChange={(e) => setNewMessage(e.target.value)} />
-                        <span onClick={handelSendMessage} className='cursor-pointer'><AiOutlineSend size={26} fill='blue' /></span>
+                    <div className="w-[inherit] fixed bottom-0 flex items-center bg-white">
+                        <input className='max-w-[450px] p-2 w-full  outline-none border-b border-b-blue-700' placeholder="Write message..." value={newMessage} onChange={(e) => setNewMessage(e.target.value)} />
+                        <span onClick={handelSendMessage} className={`cursor-pointer ${newMessage.trim() ? 'inline' : 'hidden'}`}><AiOutlineSend size={26} fill='blue' /></span>
                     </div>
                 </div>
             </>}
