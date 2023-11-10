@@ -13,7 +13,7 @@ const Home = () => {
     if (!userId)
         navigator("/login")
     return (
-        <div className="flex ">
+        <div className="flex w-full">
             {users.length > 0 && <>
                 <SideBar users={users} userId={userId} />
                 <ChatBody messages={messages} />

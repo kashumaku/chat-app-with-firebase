@@ -27,7 +27,7 @@ const CreateAccount = () => {
         <div className="h-screen bg-blue-700 flex justify-center items-center">
             <div className="h-[500px] rounded bg-white flex flex-col gap-8 justify-center items-center w-[80%] md:w-[400px]">
                 <h1 className="text-blue-700 font-bold text-2xl">Create Account</h1>
-                <p className="text-yellow-500">{alert}</p>
+                <p className="text-yellow-500 uppercase">{alert}</p>
                 <input placeholder="First Name..." onChange={(e) => setFirstName(e.target.value)} className="border-b border-b-blue-700 outline-none h-8 px-2 w-[90%]" />
                 <input placeholder="Last Name..." onChange={(e) => setLastName(e.target.value)} className="border-b border-b-blue-700 outline-none h-8 px-2 w-[90%]" />
                 <input type="email" placeholder="Email..." onChange={(e) => setEmail(e.target.value)} className="border-b border-b-blue-700 outline-none h-8 px-2 w-[90%]" />
