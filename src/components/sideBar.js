@@ -16,7 +16,7 @@ const SideBar = ({ userId, users }) => {
     const myFriends = users.filter(mf => mf.id !== userId)
     useEffect(() => {
         if (!session)
-            navigate('/login')
+            navigate('/chat-app-with-firebase/login')
     }, [session])
     const handelLogout = () => {
         localStorage.removeItem('id')
