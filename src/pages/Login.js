@@ -9,11 +9,18 @@ const Login = () => {
     const [warnning, setWarnning] = useState("")
     const navigate = useNavigate()
     const users = useGetUsers()
+    const notify = () => {
+        setWarnning("WRONG USERNAME OR PASSWORD")
+        setTimeout(() => {
+            setWarnning("")
+        }, 3000)
+
+    }
     const handelLogin = (e) => {
         e.preventDefault()
         const userLoged = users.find((user) => (user.email.toLowerCase() === email.toLowerCase()) && (user.password === password))
         if (!userLoged) {
-            setWarnning("WRONG USERNAME OR PASSWORD")
+            notify()
         }
         else {
 
@@ -29,7 +36,7 @@ const Login = () => {
                 <input type="text" placeholder="Email..." onChange={(e) => setEmail(e.target.value)} className="border-b border-b-blue-700 outline-none h-8 px-2 w-[90%]" />
                 <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} className="border-b border-b-blue-700 outline-none h-8 px-2 w-[90%]" />
                 <button className="bg-blue-700 text-white px-10 py-2" onClick={handelLogin}>Login</button>
-                {warnning && <h1>{warnning}</h1>}
+                {warnning && <h1 className="text-yellow-500">{warnning}</h1>}
                 <p className="">Have no account?  <Link className="text-blue-700 font-bold underline" to='/chat-app-with-firebase/create'>Create account</Link></p>
             </div>
         </div>

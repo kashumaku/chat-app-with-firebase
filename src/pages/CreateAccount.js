@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../firebase";
 
@@ -10,21 +10,37 @@ const CreateAccount = () => {
     const [password, setPassword] = useState("")
     const [confirm, setConfirm] = useState("")
     const [alert, setAlert] = useState("")
+    const navigate = useNavigate()
+    const notify = (message) => {
+        setAlert(message)
+        setTimeout(() => {
+            setAlert("")
+        }, 3000)
+
+    }
 
     const handelCreate = async () => {
         if (password !== confirm) {
-            setAlert("password doesn't match try again")
+            notify("password doesn't match try again")
             return
         }
-        else if (!firstName.trim() || !lastName.trim() || !email.trim() || !password.trim) {
-            setAlert("Enter the valid values in the input fields")
+        const newUser = { first_name: firstName, last_name: lastName, email: email, password: password }
+        let isEmpty = false
+        Object.values(newUser).map((n) => {
+            if (n === '') {
+                notify("All input fields are required")
+                isEmpty = true
+            }
+        })
+        if (isEmpty) {
+            console.log("is empty")
             return
         }
 
-        const newUser = { first_name: firstName, last_name: lastName, email: email, password: password }
         const userCollection = collection(db, "users")
         await addDoc(userCollection, newUser)
-        setAlert("user created succesfully")
+        notify("User registered")
+        navigate('/chat-app-with-firebase/login')
 
 
     }
@@ -32,7 +48,7 @@ const CreateAccount = () => {
         <div className="h-screen bg-blue-700 flex justify-center items-center">
             <div className="h-[500px] rounded bg-white flex flex-col gap-8 justify-center items-center w-[80%] md:w-[400px]">
                 <h1 className="text-blue-700 font-bold text-2xl">Create Account</h1>
-                <p className="text-yellow-500 uppercase">{alert}</p>
+                <p className="text-yellow-500">{alert}</p>
                 <input placeholder="First Name..." onChange={(e) => setFirstName(e.target.value)} className="border-b border-b-blue-700 outline-none h-8 px-2 w-[90%]" />
                 <input placeholder="Last Name..." onChange={(e) => setLastName(e.target.value)} className="border-b border-b-blue-700 outline-none h-8 px-2 w-[90%]" />
                 <input type="email" placeholder="Email..." onChange={(e) => setEmail(e.target.value)} className="border-b border-b-blue-700 outline-none h-8 px-2 w-[90%]" />

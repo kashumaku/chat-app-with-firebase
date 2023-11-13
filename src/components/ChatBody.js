@@ -8,7 +8,9 @@ const ChatBody = ({ messages }) => {
     const [newMessage, setNewMessage] = useState("")
     const { userId } = useContext(chatContext) //current chat user
     const { chatUserId, chatUserName } = userId
+
     const logedInId = localStorage.getItem("id")
+
     const message = messages.filter(m => {
         return ((m.sender_id === chatUserId) && (m.receiver_id === logedInId)) || ((m.receiver_id === chatUserId) && (m.sender_id === logedInId))
     })
@@ -24,8 +26,6 @@ const ChatBody = ({ messages }) => {
         const messageContent = { message: newMessage, sender_id: chatUserId, receiver_id: logedInId, date: mesageDate }
         await addDoc(messageCollection, messageContent, message)
         window.location.reload();
-
-
         setNewMessage("")
     }
     return (
@@ -41,12 +41,10 @@ const ChatBody = ({ messages }) => {
             {chatUserId && <>
                 <div className="md:w-[500px] md:ml-20  bg-white rounded-lg h-[95%] overflow-y-scroll">
                     {message.map(m => {
-                        return <p key={m.id} className={` text-black p-2 mt-2 ${m.receiver_id === logedInId && 'bg-blue-100 rounded-l-full  flex justify-end'}`} >
+                        return <div key={m.id} className={`break-all text-gray-500  p-2 mt-2 max-w-[300px] w-fit  ${m.receiver_id === logedInId && 'bg-gray-200  rounded'}`} >
                             {m.message}
-                            <span>{
 
-                            }</span>
-                        </p>
+                        </div>
                     })}
                     <div className="w-[inherit] fixed bottom-0 flex  bg-white">
                         <input className=' p-2 w-full  outline-none border-b border-b-blue-700' placeholder="Write message..." value={newMessage} onChange={(e) => setNewMessage(e.target.value)} />
