@@ -1,12 +1,13 @@
 import { AiOutlineSend } from 'react-icons/ai'
 import { useContext, useState } from "react";
-import { chatContext } from "../context";
+import { chatContext, toggleContext } from "../context";
 import { addDoc, collection, Timestamp } from 'firebase/firestore';
 import { db } from '../firebase';
 
 const ChatBody = ({ messages }) => {
     const [newMessage, setNewMessage] = useState("")
     const { userId } = useContext(chatContext) //current chat user
+    const { setToggleMenu } = useContext(toggleContext)
     const { chatUserId, chatUserName } = userId
 
     const logedInId = localStorage.getItem("id")
@@ -27,9 +28,13 @@ const ChatBody = ({ messages }) => {
         await addDoc(messageCollection, messageContent, message)
         setNewMessage("")
     }
+
     return (
-        <div className="w-full bg-gray-300 ">
+        <div className="w-full bg-gray-300 h-screen ">
             <div className="flex justify-between items-center  bg-blue-400 w-full h-[70px] px-8">
+                <svg onClick={() => (setToggleMenu(true))} className='w-7 text-white cursor-pointer' aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
                 <span className="font-bold  text-white">Chats</span>
                 <div className="flex w-[150px] pl-2  text-white items-center">
                     <svg className="w-7 h-7 p-1 mr-1 border border-white rounded-full" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -38,20 +43,23 @@ const ChatBody = ({ messages }) => {
                     <span>{chatUserName}</span></div>
             </div>
             {chatUserId && <>
-                <div className="md:w-[500px] md:ml-20 w-fit bg-white rounded-lg h-[95%] pb-[100px] overflow-y-scroll">
+                <div className="md:w-[500px] md:ml-20 w-full bg-white rounded-lg h-[95%] pb-[100px] overflow-y-scroll">
                     {message.map(m => {
-                        return <div key={m.id} className={`break-all  text-white mx-2 p-2  mt-2 max-w-[300px]   ${m.receiver_id === logedInId ? 'bg-gray-600 rounded-tl-[10px] rounded-tr-[10px] rounded-bl-[10px]' : 'rounded-tl-[10px] rounded-tr-[10px] rounded-br-[10px] bg-blue-500'}`} >
+                        return <div key={m.id} className={`break-all  text-white mx-2 p-2  mt-2 max-w-[300px]   ${m.receiver_id === logedInId ? 'bg-gray-500  rounded-tl-[10px] rounded-tr-[10px] rounded-bl-[10px]' : 'rounded-tl-[10px] rounded-tr-[10px] rounded-br-[10px] bg-blue-500'}`} >
                             {m.message}
                             <p className='text-orange-200  '>{new Date(m.sent_date).getFullYear()}-{new Date(m.sent_date).getMonth() + 1}-{new Date(m.sent_date).getDate()} {new Date(m.sent_date).getHours()}:{new Date(m.sent_date).getMinutes()} </p>
 
                         </div>
                     })}
-                    <div className=" fixed bottom-0 flex items-center w-fit bg-gray-300">
-                        <input className=' p-2 w-full  outline-none border-b border-b-blue-700' placeholder="Write message..." value={newMessage} onChange={(e) => setNewMessage(e.target.value)} />
-                        <svg className='w-10 h-10 mr-2' fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <div className=" fixed bg-white bottom-0 flex items-center w-[100vw] max-w-[500px]">
+                        <input className=' p-3 w-full  outline-none border-b border-b-blue-700 mb-2' placeholder="Write message..." value={newMessage} onChange={(e) => setNewMessage(e.target.value)} />
+                        <svg className='w-10 h-10 mr-2 text-blue-600' aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                        <svg className='w-10 h-10 mr-2 text-blue-600' fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M18.375 12.739l-7.693 7.693a4.5 4.5 0 01-6.364-6.364l10.94-10.94A3 3 0 1119.5 7.372L8.552 18.32m.009-.01l-.01.01m5.699-9.941l-7.81 7.81a1.5 1.5 0 002.112 2.13"></path>
                         </svg>
-                        <span onClick={handelSendMessage} className={`cursor-pointer ${newMessage.trim() ? 'inline' : 'hidden'}`}><AiOutlineSend size={32} fill='blue' /></span>
+                        <span onClick={handelSendMessage} className={`cursor-pointer mr-4 text-blue-600 ${newMessage.trim() ? 'inline' : 'hidden'}`}><AiOutlineSend size={30} /></span>
                     </div>
                 </div>
             </>}
