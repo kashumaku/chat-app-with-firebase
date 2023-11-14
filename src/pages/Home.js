@@ -9,8 +9,8 @@ const Home = () => {
     //fetching data from the firestore database
     const users = useGetUsers()
     const messages = useGetMessages()
+
     const userId = localStorage.getItem("id")
-    console.log(users.length);
     if (!userId && (users <= 0))
         navigator("/login")
     return (
