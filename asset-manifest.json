@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/chat-app-with-firebase/static/css/main.f4295929.css",
-    "main.js": "/chat-app-with-firebase/static/js/main.dacb8fdf.js",
+    "main.css": "/chat-app-with-firebase/static/css/main.d38fb8d3.css",
+    "main.js": "/chat-app-with-firebase/static/js/main.6213502e.js",
     "index.html": "/chat-app-with-firebase/index.html",
-    "main.f4295929.css.map": "/chat-app-with-firebase/static/css/main.f4295929.css.map",
-    "main.dacb8fdf.js.map": "/chat-app-with-firebase/static/js/main.dacb8fdf.js.map"
+    "main.d38fb8d3.css.map": "/chat-app-with-firebase/static/css/main.d38fb8d3.css.map",
+    "main.6213502e.js.map": "/chat-app-with-firebase/static/js/main.6213502e.js.map"
   },
   "entrypoints": [
-    "static/css/main.f4295929.css",
-    "static/js/main.dacb8fdf.js"
+    "static/css/main.d38fb8d3.css",
+    "static/js/main.6213502e.js"
   ]
 }
