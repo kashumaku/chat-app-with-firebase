@@ -25,18 +25,19 @@ const CreateAccount = () => {
             notify("password doesn't match try again")
             return
         }
+        let isEmpty = false;
         const newUser = { first_name: firstName, last_name: lastName, email: email, password: password }
-        let isEmpty = false
         Object.values(newUser).map((n) => {
             if (n === '') {
                 notify("All input fields are required")
                 isEmpty = true
             }
+
         })
         if (isEmpty) {
-            console.log("is empty")
+            console.log("emity")
             return
-        }
+        } // terminates the next execution if the inputs are empity
         let isUserExist = false
         users.forEach(u => {
             if (u.email === email.toLocaleLowerCase()) isUserExist = true

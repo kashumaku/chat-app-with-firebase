@@ -1,23 +1,26 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { chatContext } from "./context";
+import { chatContext, toggleContext } from "./context";
 import { useState } from "react";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import CreateAccount from "./pages/CreateAccount";
 
-
 function App() {
   const [userId, setUserId] = useState({})
+  const [toggleMenu, setToggleMenu] = useState(true)
+  const [toggleTheme, setToggleTheme] = useState(false)
   return (
     <BrowserRouter>
-      <chatContext.Provider value={{ userId, setUserId }}>
-        <Routes>
-          <Route path="/chat-app-with-firebase" element={<Home />} />
-          <Route path="/chat-app-with-firebase/login" element={<Login />} />
-          <Route path="/chat-app-with-firebase/create" element={<CreateAccount />} />
-        </Routes>
+      <toggleContext.Provider value={{ toggleMenu, setToggleMenu, toggleTheme, setToggleTheme }}>
+        <chatContext.Provider value={{ userId, setUserId }}>
+          <Routes>
+            <Route path="/chat-app-with-firebase" element={<Home />} />
+            <Route path="/chat-app-with-firebase/login" element={<Login />} />
+            <Route path="/chat-app-with-firebase/create" element={<CreateAccount />} />
+          </Routes>
 
-      </chatContext.Provider>
+        </chatContext.Provider>
+      </toggleContext.Provider>
     </BrowserRouter>
   );
 }
