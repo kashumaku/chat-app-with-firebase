@@ -40,7 +40,7 @@ const CreateAccount = () => {
         } // terminates the next execution if the inputs are empity
         let isUserExist = false
         users.forEach(u => {
-            if (u.email === email) isUserExist = true
+            if (u.email === email.toLocaleLowerCase()) isUserExist = true
         })
         if (isUserExist) {
             notify("User already exists")
