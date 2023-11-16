@@ -31,7 +31,7 @@ const ChatBody = ({ messages }) => {
 
     return (
         <div className="w-full bg-gray-300 h-screen ">
-            <div className="flex justify-between items-center  bg-blue-400 w-full h-[70px] px-8">
+            <div className="flex justify-between items-center  bg-gray-700 w-full h-[70px] px-8">
                 <svg onClick={() => (setToggleMenu(true))} className='w-7 text-white cursor-pointer' aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3" stroke-linecap="round" stroke-linejoin="round"></path>
                 </svg>

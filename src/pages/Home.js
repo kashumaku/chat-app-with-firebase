@@ -20,8 +20,6 @@ const Home = () => {
     return (
         <div className="flex w-full overflow-hidden relative justify-center ">
             {users.length > 0 && <>
-                {/* absolute left-0  w-full   absolute w-full left-[-300px] */}
-                {/* <div className={toggleMenu ? 'block absolute w-full left-2 duration-[6s]' : 'z-[-10] absolute w-full left-[-40%]'}  ><SideBar users={users} userId={userId} /></div> */}
                 <div className={`absolute w-full duration-[1s] ${toggleMenu ? 'left-0 z-10  ' : 'left-[-44%] -z-10 '}`}  >
                     <SideBar users={users} userId={userId} />
                 </div>

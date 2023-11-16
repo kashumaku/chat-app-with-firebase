@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../firebase";
+import { useGetUsers } from "../data";
 
 const CreateAccount = () => {
     const [firstName, setFirstName] = useState("")
@@ -18,25 +19,33 @@ const CreateAccount = () => {
         }, 3000)
 
     }
-
+    const users = useGetUsers() // to check is the email registered or not
     const handelCreate = async () => {
         if (password !== confirm) {
             notify("password doesn't match try again")
             return
         }
+        let isEmpty = false;
         const newUser = { first_name: firstName, last_name: lastName, email: email, password: password }
-        let isEmpty = false
         Object.values(newUser).map((n) => {
             if (n === '') {
                 notify("All input fields are required")
                 isEmpty = true
             }
+
         })
         if (isEmpty) {
-            console.log("is empty")
+            console.log("emity")
+            return
+        } // terminates the next execution if the inputs are empity
+        let isUserExist = false
+        users.forEach(u => {
+            if (u.email === email) isUserExist = true
+        })
+        if (isUserExist) {
+            notify("User already exists")
             return
         }
-
         const userCollection = collection(db, "users")
         await addDoc(userCollection, newUser)
         notify("User registered")
