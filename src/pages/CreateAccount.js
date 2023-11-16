@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../firebase";
+import { useGetUsers } from "../data";
 
 const CreateAccount = () => {
     const [firstName, setFirstName] = useState("")
@@ -18,7 +19,7 @@ const CreateAccount = () => {
         }, 3000)
 
     }
-
+    const users = useGetUsers()
     const handelCreate = async () => {
         if (password !== confirm) {
             notify("password doesn't match try again")
@@ -34,6 +35,14 @@ const CreateAccount = () => {
         })
         if (isEmpty) {
             console.log("is empty")
+            return
+        }
+        let isUserExist = false
+        users.forEach(u => {
+            if (u.email === email.toLocaleLowerCase()) isUserExist = true
+        })
+        if (isUserExist) {
+            notify("User already exists")
             return
         }
 
