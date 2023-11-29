@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/chat-app-with-firebase/static/css/main.824c1795.css",
-    "main.js": "/chat-app-with-firebase/static/js/main.966388ac.js",
-    "index.html": "/chat-app-with-firebase/index.html",
-    "main.824c1795.css.map": "/chat-app-with-firebase/static/css/main.824c1795.css.map",
-    "main.966388ac.js.map": "/chat-app-with-firebase/static/js/main.966388ac.js.map"
+    "main.css": "/hichat/static/css/main.824c1795.css",
+    "main.js": "/hichat/static/js/main.db50d5fb.js",
+    "index.html": "/hichat/index.html",
+    "main.824c1795.css.map": "/hichat/static/css/main.824c1795.css.map",
+    "main.db50d5fb.js.map": "/hichat/static/js/main.db50d5fb.js.map"
   },
   "entrypoints": [
     "static/css/main.824c1795.css",
-    "static/js/main.966388ac.js"
+    "static/js/main.db50d5fb.js"
   ]
 }
